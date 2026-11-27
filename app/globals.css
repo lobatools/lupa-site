@@ -1,0 +1,241 @@
+/* Colours from the LUPA brand pack (Ocean palette). */
+:root {
+  --ink: #17171b;
+  --ocean: #0a72b8;
+  --ocean-dark: #064a78;
+  --text-2: #55606f;
+  --muted: #8792a2;
+  --line: #d3dae3;
+  --bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ocean);
+}
+a:hover {
+  color: var(--ocean-dark);
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Wolf-head outline pattern, faded in from the right. */
+.pattern {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='translate(17 17) scale(1.25)' fill='none' stroke='%23D3DAE3' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M4 3 L8.5 8.5 L12 7 L15.5 8.5 L20 3 L19.5 12.5 L12 21 L4.5 12.5 Z'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: linear-gradient(90deg, transparent 40%, #000 80%);
+  mask-image: linear-gradient(90deg, transparent 40%, #000 80%);
+}
+
+.glow {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  width: 520px;
+  height: 520px;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(10, 114, 184, 0.16), rgba(10, 114, 184, 0) 65%);
+}
+
+.bar {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.home:hover {
+  color: var(--ink);
+}
+
+.wordmark {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.hero {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.copy {
+  flex: 1 1 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.terminal {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+.prompt {
+  color: var(--ocean);
+}
+.cursor {
+  display: inline-block;
+  width: 9px;
+  height: 17px;
+  background: var(--ocean);
+  vertical-align: -3px;
+  animation: blink 1.06s step-end infinite;
+}
+
+/* Hard on/off like a real terminal cursor; the page's only animation. */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}
+
+.muted {
+  color: var(--muted);
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+/* A class, not bare h1, so injected resets (extensions, normalize.css) can't override it. */
+.title {
+  margin: 0;
+  font-size: clamp(48px, 9vw, 112px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  margin: 0;
+  max-width: 560px;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.releases {
+  align-self: flex-start;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+}
+.releases:hover {
+  color: var(--ocean);
+  border-color: var(--ocean);
+}
+
+.note {
+  font-family: var(--font-hand), cursive;
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--ocean);
+}
+
+.icon {
+  flex: none;
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 22px 36px rgba(11, 18, 32, 0.28));
+}
+
+.foot {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 28px 24px 36px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.foot a {
+  color: var(--text-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+.foot a:hover {
+  color: var(--ocean);
+}
+
+@media (max-width: 760px) {
+  .bar {
+    padding: 20px;
+  }
+  .hero {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px 20px 24px;
+    gap: 28px;
+  }
+  .copy {
+    flex: none;
+  }
+  .title {
+    font-size: 52px;
+  }
+  .icon {
+    width: 72px;
+    height: 72px;
+    filter: drop-shadow(0 12px 28px rgba(10, 114, 184, 0.3));
+  }
+  .glow {
+    display: none;
+  }
+  .pattern {
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 22%, transparent 80%, rgba(0, 0, 0, 0.55) 100%);
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 22%, transparent 80%, rgba(0, 0, 0, 0.55) 100%);
+  }
+  .foot {
+    padding: 20px 20px 28px;
+    font-size: 13px;
+  }
+}
